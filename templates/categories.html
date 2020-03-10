@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>CATEGORIES</title>
+</head>
+<body>
+    {%block content%}
+        <br><br>
+        <center>
+        <div class="card" style="width: 20rem;">
+            {% for item in categories %}
+                    <div class="card">
+                        <a href="../html-link.htm"><img src="{{ url_for('static', filename='categories/images/' + item.c_name | upper + '.png') }}" class="card-img-top" alt="..." height="200"></a>
+                    </div>
+                    <br>
+            {% endfor %}
+        </div>
+        </center>
+    {% endblock %}
+</body>
+</html>

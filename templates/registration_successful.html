@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>THANK YOU FOR REGISTERING.</title>
+</head>
+<body>
+    {%block content%}
+        {% if session["sex"] == "sex_one" %}
+            <center>
+                <br><br>
+                <h2>GREAT TO HAVE YOU HERE, MR. {{ session["name"] | upper }}.</h2>
+                <br>
+                <h3>YOU CAN LOGIN <a href={{ url_for('login') }}>HERE.</a></h3>
+            </center>
+        {% elif session["sex"] == "sex_two" %}
+            <br><br>
+            <center>
+                <h1>GREAT TO HAVE YOU HERE, MS. {{ session["name"] | upper }}.</h1>
+                <br>
+                <h3>YOU CAN LOGIN <a href={{ url_for('login') }}>HERE.</a></h3>
+            </center>
+        {% endif %}
+    {% endblock %}
+</body>
+</html>

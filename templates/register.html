@@ -1,0 +1,64 @@
+{% extends 'base.html' %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+</head>
+<body>
+    {%block content%}
+        <form method="POST">
+            {{ form.hidden_tag() }}
+            <br>
+            <center>
+                <label>
+                    <p class="label-txt">{{ form.name.label }}</p>
+                    {{ form.name() }}
+                    <br><br>
+                </label>
+            </center>
+            <center>
+                <label>
+                    <p class="label-txt">{{ form.email.label }}</p>
+                    {{ form.email() }}
+                    <br><br>
+                </label>
+            </center>
+            <center>
+                <label>
+                    <p class="label-txt">{{ form.sex.label }}</p>
+                    {{ form.sex() }}
+                    <br><br>
+                </label>
+            </center>
+            <center>
+                <label>
+                    <p class="label-txt">{{ form.password.label }}</p>
+                    {{ form.password() }}
+                    <br><br>
+                </label>
+            </center>
+            <center>
+                <label>
+                    <p class="label-txt">{{ form.confirm_password.label }}</p>
+                    {{ form.confirm_password() }}
+                    <br><br>
+                </label>
+            </center>
+            <center>
+                <label>
+                    <p class="label-txt">{{ form.t_and_c.label }}</p>
+                    {{ form.t_and_c() }}
+                    <br><br>
+                </label>
+            </center>
+            <center>
+                {{ form.submit() }}
+            </center>
+    </form>
+    {% endblock %}
+</body>
+</html>
