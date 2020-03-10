@@ -12,7 +12,7 @@
         <div class="card" style="width: 20rem;">
             {% for item in categories %}
                     <div class="card">
-                        <a href="../html-link.htm"><img src="{{ url_for('static', filename='categories/images/' + item.c_name | upper + '.png') }}" class="card-img-top" alt="..." height="200"></a>
+                        <a href="{{ url_for('category_videos', category_videos = item.c_name | lower) }}"><img src="{{ url_for('static', filename='categories/images/' + item.c_name | upper + '.png') }}" class="card-img-top" alt="..." height="200"></a>
                     </div>
                     <br>
             {% endfor %}

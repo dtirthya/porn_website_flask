@@ -29,9 +29,11 @@ class User(db.Model):
         self.sex = sex
         self.email = email
         self.password = password
+
 class Category(db.Model):
     c_id = db.Column(db.Integer, primary_key=True)
     c_name = db.Column(db.Text, unique=True, nullable=False)
+
 class Videos(db.Model):
     v_id = db.Column(db.Integer, primary_key=True)
     v_name = db.Column(db.Text, nullable=False)
@@ -100,6 +102,9 @@ def categories():
     categories = Category.query.all()
     return render_template('categories.html', categories = categories)
 
+@app.route('/categories/<category_videos>')
+def category_videos(category_videos):
+    return render_template('category_videos.html', category_videos = category_videos)
 
 if __name__ == '__main__':
     app.run()
