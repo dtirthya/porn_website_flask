@@ -64,7 +64,7 @@ class RegistrationForm(FlaskForm):
     ])
     submit = SubmitField("SIGN UP")
 
-class LoginForm(FlaskForm):
+#class LoginForm(FlaskForm):
 
 #Routes
 
