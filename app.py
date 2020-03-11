@@ -64,6 +64,8 @@ class RegistrationForm(FlaskForm):
     ])
     submit = SubmitField("SIGN UP")
 
+class LoginForm(FlaskForm):
+
 #Routes
 
 @app.route('/')
