@@ -8,16 +8,30 @@
 <body>
     {%block content%}
         <br><br>
-        <center>
-        <div class="card" style="width: 20rem;">
-            {% for item in categories %}
-                    <div class="card">
-                        <a href="{{ url_for('category_videos', category_videos = item.c_name | lower) }}"><img src="{{ url_for('static', filename='categories/images/' + item.c_name | upper + '.png') }}" class="card-img-top" alt="..." height="200"></a>
+        <h2 style="color: white"><center>CATEGORIES</center></h2>
+        <br><br>
+        <div class="container">
+            <div class="row">
+                <div class="container">
+                    <div class="row">
+                        {% for item in categories %}
+                            <div class="col-md-4">
+                                <div class="card mb text-white bg-dark h-75">
+                                    <img class="card-img-top" src="{{ url_for('static', filename='categories/images/' + item.c_name | upper + '.jpg') }}" alt="Card image cap" height="200" width="200">
+                                    <div class="card-body mb">
+                                        <h5 class="card-title"><center>{{ item.c_name | upper }}</center></h5>
+                                        <p align="center">
+                                            <br><br><br>
+                                            <a href="{{ url_for('category_videos', category_videos = item.c_name | lower) }}" class="btn btn-primary">CLICK HERE</a>
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        {% endfor %}
                     </div>
-                    <br>
-            {% endfor %}
+                </div>
+            </div>
         </div>
-        </center>
     {% endblock %}
 </body>
 </html>
