@@ -37,32 +37,36 @@ class Category(db.Model):
 class Videos(db.Model):
     v_id = db.Column(db.Integer, primary_key=True)
     v_name = db.Column(db.Text, nullable=False)
-    cat_id = db.Column(db.Integer, db.ForeignKey('category.c_id'), nullable=False)
+    cat_name = db.Column(db.Integer, db.ForeignKey('category.c_name'), nullable=False)
+    v_location = db.Column(db.Text, nullable=False)
 
 #Forms
 
 class RegistrationForm(FlaskForm):
     name = StringField("NAME", [
         validators.DataRequired()
-    ])
+    ],
+    render_kw={'class': 'form-control'})
     email = StringField("EMAIL", [
         validators.Email()
-    ])
+    ],
+    render_kw = {'class': 'form-control'})
     sex = RadioField("ARE YOU MALE OR FEMALE?", [
         validators.DataRequired(),
     ],
-    choices=[("sex_one", "MALE"), ("sex_two", "FEMALE")])
+    choices=[("sex_one", "MALE"), ("sex_two", "FEMALE")], render_kw = {'class': 'radio'})
     password = PasswordField("PASSWORD", [
         validators.DataRequired(),
         validators.Length(min=10),
-        validators.EqualTo("confirm_password", message="PASSWORDS MUST MATCH!")])
-    confirm_password = PasswordField("CONFIRM PASSWORD")
+        validators.EqualTo("confirm_password", message="PASSWORDS MUST MATCH!")],
+                             render_kw = {'class': 'form-control'})
+    confirm_password = PasswordField("CONFIRM PASSWORD", render_kw = {'class': 'form-control'})
     if password == confirm_password:
         flash("PASSWORDS MATCHED.")
     t_and_c = BooleanField("I AGREE TO THE TERMS AND CONDITIONS.", [
         validators.DataRequired(),
     ])
-    submit = SubmitField("SIGN UP")
+    submit = SubmitField("SIGN UP", render_kw={'class': 'btn btn-primary', 'style': 'width:21%'})
 
 #class LoginForm(FlaskForm):
 
@@ -106,7 +110,22 @@ def categories():
 
 @app.route('/categories/<category_videos>')
 def category_videos(category_videos):
-    return render_template('category_videos.html', category_videos = category_videos)
+    preview_videos = Videos.query.filter_by(cat_name = category_videos.upper())
+    return render_template('category_videos.html', preview_videos = preview_videos, show_name = category_videos.upper())
+
+@app.route('/categories/<category_videos>/<video_name>')
+def video(category_videos, video_name):
+    video_path = os.path.join(os.path.abspath(os.path.dirname(__file__)), 'static/categories/videos/' + category_videos.upper() + '/')
+    file_list = os.listdir(video_path)
+    flag = 0
+    print(video_path)
+    for file_name in file_list:
+        if video_name in file_name:
+            return render_template('video.html', category_videos = category_videos, video_name = video_name)
+        else:
+            flag = 1
+    if flag == 1:
+        return render_template('video_not_found_error.html')
 
 if __name__ == '__main__':
     app.run()

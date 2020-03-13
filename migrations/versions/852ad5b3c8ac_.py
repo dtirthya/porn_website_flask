@@ -1,8 +1,8 @@
-"""INITIAL TABLES CREATED
+"""empty message
 
-Revision ID: af532c57295b
+Revision ID: 852ad5b3c8ac
 Revises: 
-Create Date: 2020-03-10 12:20:50.909628
+Create Date: 2020-03-12 10:16:22.849906
 
 """
 from alembic import op
@@ -10,7 +10,7 @@ import sqlalchemy as sa
 
 
 # revision identifiers, used by Alembic.
-revision = 'af532c57295b'
+revision = '852ad5b3c8ac'
 down_revision = None
 branch_labels = None
 depends_on = None
@@ -38,8 +38,9 @@ def upgrade():
     op.create_table('videos',
     sa.Column('v_id', sa.Integer(), nullable=False),
     sa.Column('v_name', sa.Text(), nullable=False),
-    sa.Column('cat_id', sa.Integer(), nullable=False),
-    sa.ForeignKeyConstraint(['cat_id'], ['category.c_id'], ),
+    sa.Column('cat_name', sa.Integer(), nullable=False),
+    sa.Column('v_location', sa.Text(), nullable=False),
+    sa.ForeignKeyConstraint(['cat_name'], ['category.c_name'], ),
     sa.PrimaryKeyConstraint('v_id')
     )
     # ### end Alembic commands ###
