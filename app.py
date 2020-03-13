@@ -121,7 +121,7 @@ def video(category_videos, video_name):
     print(video_path)
     for file_name in file_list:
         if video_name in file_name:
-            return render_template('video.html', category_videos = category_videos, video_name = video_name)
+            return render_template('video.html', category_videos=category_videos, video_name=video_name)
         else:
             flag = 1
     if flag == 1:
