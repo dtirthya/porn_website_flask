@@ -10,6 +10,7 @@
         <br><br>
         <h2 style="color: white"><center>{{ show_name | upper }} VIDEOS</center></h2>
         <br><br>
+
         <div class="container">
             <div class="row">
                 <div class="container">
@@ -17,7 +18,7 @@
                         {% for item in preview_videos %}
                             <div class="col-md-4">
                                 <div class="card mb text-white bg-dark h-75">
-                                    <img class="card-img-top" src="{{ url_for('static', filename=item.v_location + item.v_name) }}" alt="Card image cap" height="200" width="200">
+                                    <img class="card-img-top" src="{{ url_for('static', filename = item.v_location + item.v_name) }}" alt="Card image cap" height="200" width="200">
                                     <div class="card-body mb">
                                         <h5 class="card-title"><center>{{ item.v_name }}</center></h5>
                                         <p align="center">
